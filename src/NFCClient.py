@@ -26,10 +26,13 @@ class NFCClient:
 
     # TAGS
     TAG_SIZE = 10
+<<<<<<< HEAD
     
     #TIMEOUTS
     CLIENT_TO = 10
     SOCKET_TO = 5
+=======
+>>>>>>> 964d389daf63ef7e8fca9987688fbdeed1635911
 
     def __init__(self, ip_address, port):
 
@@ -37,8 +40,13 @@ class NFCClient:
         self.port = port
         self.server_address = (self.ip_address, self.port)
         self.master_state = False
+<<<<<<< HEAD
         self.client_timeout = self.CLIENT_TO
         self.button_timeout = self.SOCKET_TO
+=======
+        self.client_timeout = 5
+        self.button_timeout = 5
+>>>>>>> 964d389daf63ef7e8fca9987688fbdeed1635911
         self.sock = ""
         self.card_reader = MFRC522.MFRC522()
 
@@ -117,6 +125,7 @@ class NFCClient:
         data = struct.unpack('>' + 'h' * int(size / 2), p[4:size + 4])
         
         print(data)
+<<<<<<< HEAD
 
         tag_str = ""
 
@@ -125,6 +134,8 @@ class NFCClient:
             
         tag_str = tag_str[:-1]
         print(tag_str)
+=======
+>>>>>>> 964d389daf63ef7e8fca9987688fbdeed1635911
         
 
         return package
@@ -165,8 +176,13 @@ class NFCClient:
             code = struct.unpack('>h', p[:2])[0]
             size = struct.unpack('>h', p[2:4])[0]
             data = struct.unpack('>' + 'h' * int(size / 2), p[4:size + 4])
+<<<<<<< HEAD
             
             return data[0]
+=======
+
+            return data
+>>>>>>> 964d389daf63ef7e8fca9987688fbdeed1635911
 
         except socket.timeout as err:
             print("Socket err: ", err)
@@ -219,7 +235,11 @@ class NFCClient:
 
                 if not delete_tag and not delete_tag_activated:
                     print("Delete tag button pressed")
+<<<<<<< HEAD
                     delete_tag_activated = True
+=======
+                    deelte_tag_activated = True
+>>>>>>> 964d389daf63ef7e8fca9987688fbdeed1635911
                 
                 if delete_tag_activated or add_tag_activated:
 					
@@ -233,7 +253,11 @@ class NFCClient:
 			    button_activated = True
 							
 		        if (delete_tag_activated):
+<<<<<<< HEAD
 			    package = self.__create_package(self.DELETE_TAG, self.TAG_SIZE, uid)
+=======
+			    package = self.__create_package(self.ADD_TAG, self.TAG_SIZE, uid)
+>>>>>>> 964d389daf63ef7e8fca9987688fbdeed1635911
 			    self.sock.sendto(package, self.server_address)
 		            button_activated = True
 		            
